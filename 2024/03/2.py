@@ -13,18 +13,13 @@ for line in f:
     for bul in bulk:
         for i in range(0, len(bul)):
             if(i%4 == 0):
-                print(bul[i])
-                print()
                 bulks.append(bul[i])
     bulk = re.findall("(.*)(do\(\))(.*?)(\n)", line)
-    print(bulk[0][2])
-    print()
     bulks.append(bulk[0][2])
 
 instr = []
 
 for line in bulks:
-    print(line)
     inst = re.findall("mul\(\d+,\d+\)", line) 
     instr.extend(inst)
 
@@ -36,4 +31,3 @@ for mul in instr:
     s += d
 
 print(s)
-
