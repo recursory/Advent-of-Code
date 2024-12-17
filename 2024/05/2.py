@@ -11,26 +11,30 @@ for line in f:
             adj[key] = []
         adj[key].append(val)
     elif line == '\n':
-        #print(adj)
+        ##print(adj)
         continue
     else:
-        #print()
+        ##print()
         words = line.strip().split(',')
         nums = []
         for word in words:
             nums.append(int(word))
-        good = True
+        #print(nums)
+        swapped = False 
         sofars = []
         for num in nums:
             sofars.append(num)
             if num in adj:
                 for preq in adj[num]:
                     if preq in nums and preq not in sofars:
-                        #print("epic fail!")
-                        #print(adj[num])
-                        #print(sofars)
-                        good = False
-        if good:
-            #print("epic win!")
-            goodmidsum += nums[int(len(nums)/2)]
+                        nindex = nums.index(num)
+                        nums[nums.index(preq)] = num
+                        nums[nindex] = preq
+                        middex = nums[int(len(nums)/2)]
+                        goodmidsum += middex
+                        swapped = True
+                    if swapped == True:
+                        break
+            if swapped == True:
+                break 
 print(goodmidsum)
